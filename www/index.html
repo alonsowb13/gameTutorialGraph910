@@ -94,6 +94,22 @@
 			drawBall();
 			drawPaddle();
 
+			if(y + dy < ballRadius){
+				console.log("Inside canvas ");
+				dy = -dy
+			} else if(y + dy > canvas.height-ballRadius){
+				console.log("Inside canvas ");
+				if(x>paddleX && x< paddleX + paddleWidth){
+					console.log("dentro del paddle ");
+					dy = -dy;
+				}else{
+					console.log("fuera del canvas and paddle ");
+					alert("GAME OVER");
+					document.location.reload();
+				}
+			}
+
+
 			if(x + dx > canvas.width-ballRadius || x + dx < ballRadius){
 				dx = -dx;
 			}
@@ -101,6 +117,16 @@
 			if(y + dy > canvas.height-ballRadius || y + dy < ballRadius){
 				dy = -dy;
 			}
+
+
+			if(rightPressed && paddleX < canvas.width-paddleWidth){
+				paddleX +=7;
+			}
+
+			else if(leftPressed && paddleX > 0){
+				paddleX -= 7;
+			}
+
 
 			x += dx;
 			y += dy;
